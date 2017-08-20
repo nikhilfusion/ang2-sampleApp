@@ -78,6 +78,29 @@ export class MyLogComponent implements OnInit {
     this.showDialog = !this.showDialog;
   }
 
+
+daterangepickerOptions = {
+    startDate: '09/01/2017',
+    endDate: '09/02/2017',
+    format: 'DD/MM/YYYY'
+  }
+
+
+    /* multipl select code */
+
+     multipleData = [];
+     selectDisabled = true;
+
+     userModel = {
+         gender: "m",
+         name: "John Doe"
+     };
+     selection: string = "";
+     cities: Array<string> = ["New York", "Belgrade", "Stockholm", "Sarajevo"];
+
+     onMultiple(data: Array<string>): void {
+         this.multipleData = data;
+     }
 }
 
 interface Data {

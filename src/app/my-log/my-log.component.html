@@ -34,11 +34,21 @@
   <div class="filter-header">Filter by</div>
   <div class="filter-item-header">Select Time Period</div>
   <div class="filter-item">
-  	<input type="date" [(ngModel)]='filter.displayTime'>
+  	<!-- <input type="date" [(ngModel)]='filter.displayTime'> -->
+  	<date-range-picker class="col-md-4" [options]="daterangepickerOptions" class="col-md-4" placeholder="Select range" >
+		</date-range-picker>
   </div>
+  <br>
   <div class="filter-item-header">Select Email</div>
-  <div class="filter-item">
+  <sm-select
+      [options]="{direction: 'upward', transition: 'vertical flip'}"
+      placeholder="Select multiple email" 
+      class="fluid search multiple"
+      (onChange)="onMultiple($event)">
+      <option *ngFor="let udata of userData | filterUnique">{{udata.loggedUseremail}}</option>
+  </sm-select>
+<!--   <div class="filter-item">
   	<input [(ngModel)]='filter.loggedUseremail'/>
-  </div>
+  </div> -->
   <button class="btn filter-btn" (click)="setFilter(filter)">Generate</button>
 </app-dialog>
