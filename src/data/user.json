@@ -1,0 +1,81 @@
+{
+  "user": [
+  {
+    "id":2824,
+    "loggedUseremail":"test@mail.com",
+    "methodName":"createUser",
+    "className":"com.api.controller.AnonymousController",
+    "time":"09-08-2017 14:48"
+  },
+  {
+    "id":2821,
+    "loggedUseremail":"root@mail.com",
+    "methodName":"dashboard",
+    "className":"com.api.controller.SuperAdminController",
+    "time":"09-08-2017 14:14"
+  },
+  {
+    "id":2819,
+    "loggedUseremail":"abc@mail.com",
+    "methodName":"createUser",
+    "className":"com.api.controller.AnonymousController",
+    "time":"09-08-2017 14:14"
+  },
+  {
+    "id":2816,
+    "loggedUseremail":"root@mail.com",
+    "methodName":"getLoggedUsers",
+    "className":"com.api.controller.SuperAdminController",
+    "time":"09-08-2017 14:01"
+  },
+  {
+    "id":2753,
+    "loggedUseremail":"user@mail.com",
+    "methodName":"getCategories",
+    "className":"com.api.controller.CommonController",
+    "time":"08-08-2017 16:31"
+  },
+  {
+    "id":2752,
+    "loggedUseremail":"root@mail.com",
+    "methodName":"getAllCountries",
+    "className":"com.api.controller.SuperAdminController",
+    "time":"08-08-2017 14:25"
+  },
+  {
+    "id":2748,
+    "loggedUseremail":"root@mail.com",
+    "methodName":"getAllOrgs",
+    "className":"com.api.controller.SuperAdminController",
+    "time":"08-08-2017 14:05"
+  },
+  {
+    "id":2747,
+    "loggedUseremail":"test@mail.com",
+    "methodName":"getAllUsers",
+    "className":"com.api.controller.SuperAdminController",
+    "time":"08-08-2017 11:30"
+  },
+  {
+    "id":2683,
+    "loggedUseremail":"user@mail.com",
+    "methodName":"getAllAppLogs",
+    "className":"com.api.controller.SuperAdminController",
+    "time":"07-08-2017 17:56"
+  },
+  {
+    "id":2684,
+    "loggedUseremail":"abc@mail.com",
+    "methodName":"getLoggedUsers",
+    "className":"com.api.controller.SuperAdminController",
+    "time":"07-08-2017 14:45"
+  },
+  {
+    "id":2682,
+    "loggedUseremail":"root@mail.com",
+    "methodName":"getAllUserCreationEvents",
+    "className":"com.api.controller.SuperAdminController",
+    "time":"07-08-2017 11:23"
+  }
+]
+}
