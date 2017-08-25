@@ -7,10 +7,10 @@
 				</div>
 				<div class="filtered-items">
 					<span class="filter-span">Filtered by: </span>
-					<span class="filter-span">Email:</span>
-					<span><b>{{filter.email}}</b></span>
-					<span class="filter-span">Time Period:</span>
-					<span>{{filter.time}}</span>
+					<span class="filter-span" *ngIf="filteredDt.email">Email:</span>
+					<span><b>{{filteredDt.email}}</b></span>
+					<span class="filter-span" *ngIf="filteredDt.email">Date:</span>
+					<span>{{filteredDt.startDate}} - {{filteredDt.endDate}}</span>
 				</div>
 			</div>
 			<div class="item-container" *ngFor="let listItem of keyList">
@@ -32,23 +32,26 @@
 </div>
 <app-dialog [(visible)]="showDialog">
   <div class="filter-header">Filter by</div>
-  <div class="filter-item-header">Select Time Period</div>
+  <div class="filter-item-header">Start Date</div>
   <div class="filter-item">
-  	<!-- <input type="date" [(ngModel)]='filter.displayTime'> -->
-  	<date-range-picker class="col-md-4" [options]="daterangepickerOptions" class="col-md-4" placeholder="Select range" >
-		</date-range-picker>
+  	<input type="date" [(ngModel)]="filter.startDate">
+  </div>
+  <div class="filter-item-header">End Date</div>
+  <div class="filter-item">	
+  	<input type="date" [(ngModel)]="filter.endDate">
   </div>
   <br>
   <div class="filter-item-header">Select Email</div>
   <sm-select
-      [options]="{direction: 'upward', transition: 'vertical flip'}"
-      placeholder="Select multiple email" 
+      [options]="{direction: 'downward', transition: 'vertical flip'}"
+      placeholder="Select email" 
       class="fluid search multiple"
+      value="filter.email"
       (onChange)="onMultiple($event)">
       <option *ngFor="let udata of userData | filterUnique">{{udata.loggedUseremail}}</option>
   </sm-select>
 <!--   <div class="filter-item">
   	<input [(ngModel)]='filter.loggedUseremail'/>
   </div> -->
-  <button class="btn filter-btn" (click)="setFilter(filter)">Generate</button>
+  <button class="btn filter-btn" (click)="generateFilter(filter)">Generate</button>
 </app-dialog>
