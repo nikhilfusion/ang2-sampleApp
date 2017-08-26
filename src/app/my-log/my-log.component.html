@@ -47,6 +47,7 @@
       placeholder="Select email" 
       class="fluid search multiple"
       value="filter.email"
+       [(model)]="selectedItem"
       (onChange)="onMultiple($event)">
       <option *ngFor="let udata of userData | filterUnique">{{udata.loggedUseremail}}</option>
   </sm-select>

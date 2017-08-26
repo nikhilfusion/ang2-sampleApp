@@ -1,8 +1,9 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ElementRef} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
 import * as _ from 'underscore';
 import * as moment from 'moment';
+declare var jQuery: any;
 
 @Component({
   selector: 'app-my-log',
@@ -16,6 +17,7 @@ export class MyLogComponent implements OnInit {
   keyList: string[];
   userData: any[];
   showDialog = false;
+  selectedItem:any[];
   filter = {
     email: [],
     startDate: '',
@@ -30,7 +32,8 @@ export class MyLogComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private elementRef: ElementRef
   ) {}
 
   ngOnInit() {
@@ -42,9 +45,16 @@ export class MyLogComponent implements OnInit {
         this.filter[key] = this.filteredDt[key] = val;
       })
       this.setFilter(queryParams);
+      this.selectedItem = this.selectedItem ||  this.route.snapshot.queryParams.email;
+
     })
   };
+  ngAfterViewInit(){
+     jQuery(this.elementRef.nativeElement).find('select').dropdown({allowTab:false});
+     jQuery('.dropdown').dropdown("set selected",'helloooo');
+     console.log("select valuessss", jQuery('.dropdown').dropdown());
 
+  }
   generateFilter(filterDt) {
     var afterFilter={};
     for (let key in filterDt) {
@@ -100,6 +110,7 @@ export class MyLogComponent implements OnInit {
 
   onMultiple(data: Array<string>): void {
     this.filter.email = data;
+    console.log("on multiple", jQuery(this.elementRef.nativeElement).find('sm-select').dropdown());
   }
 }
 
