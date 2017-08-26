@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
 import * as _ from 'underscore';
 import * as moment from 'moment';
-declare var jQuery: any;
 
 @Component({
   selector: 'app-my-log',
@@ -49,12 +48,6 @@ export class MyLogComponent implements OnInit {
 
     })
   };
-  ngAfterViewInit(){
-     jQuery(this.elementRef.nativeElement).find('select').dropdown({allowTab:false});
-     jQuery('.dropdown').dropdown("set selected",'helloooo');
-     console.log("select valuessss", jQuery('.dropdown').dropdown());
-
-  }
   generateFilter(filterDt) {
     var afterFilter={};
     for (let key in filterDt) {
@@ -110,7 +103,6 @@ export class MyLogComponent implements OnInit {
 
   onMultiple(data: Array<string>): void {
     this.filter.email = data;
-    console.log("on multiple", jQuery(this.elementRef.nativeElement).find('sm-select').dropdown());
   }
 }
 
