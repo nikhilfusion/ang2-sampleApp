@@ -38,7 +38,6 @@ export class MyLogComponent implements OnInit {
     .subscribe((res) => {
       this.userData = res;
       var queryParams = this.route.snapshot.queryParams;
-      console.log('queryParams is ', queryParams);
       _.each(queryParams, (val, key) => {
         this.filter[key] = this.filteredDt[key] = val;
       })
@@ -46,22 +45,11 @@ export class MyLogComponent implements OnInit {
     })
   };
 
-  // var newArr = _.map(this.userData, function(element) {
-  //   return _.extend(
-  //     {}, 
-  //     element, {
-  //       date: moment(element['time'], 'DD-MM-YYYY').format('dddd, MMMM DD'),
-  //       displayTime: moment(element['time'], 'DD-MM-YYYY hh:mm').format('h:mm A')
-  //     });
-  // });
-  // this.data = _.groupBy(newArr, 'date');
-  // this.keyList = Object.keys(this.data);
-
   generateFilter(filterDt) {
     var afterFilter={};
     for (let key in filterDt) {
       if (filterDt[key]) {
-        afterFilter[key] = filterDt[key];
+        afterFilter[key] = this.filteredDt[key] = filterDt[key];
       }
     }
     this.router.navigate(['/'],{ queryParams: afterFilter});
@@ -75,19 +63,15 @@ export class MyLogComponent implements OnInit {
         splitDt = new Date(Number(splitDate[0]), Number(splitDate[2]), Number(splitDate[1])),
         startDate = filterDt.startDate ? new Date(filterDt.startDate.split('-')[0], filterDt.startDate.split('-')[1], filterDt.startDate.split('-')[2]) : '',
         endDate = filterDt.endDate ? new Date(filterDt.endDate.split('-')[0],filterDt.endDate.split('-')[1], filterDt.endDate.split('-')[2]) : '';
-        // if(filterDt.email instanceof Array) {
-        //   if(filterDt.email.length > 0) {
-        //     filterDt.email.forEach(function(email) {
-        //       if(item.loggedUseremail != email) {
-        //         return false;
-        //       }
-        //     })
-        //   }
-        // } else {
-        //   if(item.loggedUseremail != filterDt.email) {
-        //     return false;
-        //   }
-        // }
+        if(filterDt.email instanceof Array) {
+          if(!filterDt.email.includes(item.loggedUseremail)) {
+            return false;
+          }
+        } else {
+          if(filterDt.email != item.loggedUseremail) {
+            return false;
+          }
+        }
         if(startDate && startDate > splitDt) {
            return false;
         }
@@ -95,13 +79,7 @@ export class MyLogComponent implements OnInit {
           return false;
         }
         return true;
-      // return(
-      //   filterDt.email ? item.loggedUseremail.includes(filterDt.email) : true &&
-      //   startDate ? startDate <= splitDt: true &&
-      //   endDate ? endDate >= splitDt : true
-      // );
     });
-    console.log('filteredInfo is ', filteredInfo);
     if(filteredInfo) {
       var newArr = _.map(filteredInfo, function(element) {
         return _.extend(
