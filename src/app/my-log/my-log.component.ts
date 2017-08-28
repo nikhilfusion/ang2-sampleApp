@@ -66,11 +66,11 @@ export class MyLogComponent implements OnInit {
         splitDt = new Date(Number(splitDate[0]), Number(splitDate[2]), Number(splitDate[1])),
         startDate = filterDt.startDate ? new Date(filterDt.startDate.split('-')[0], filterDt.startDate.split('-')[1], filterDt.startDate.split('-')[2]) : '',
         endDate = filterDt.endDate ? new Date(filterDt.endDate.split('-')[0],filterDt.endDate.split('-')[1], filterDt.endDate.split('-')[2]) : '';
-        if(filterDt.email instanceof Array) {
+        if(filterDt.email && filterDt.email instanceof Array) {
           if(!filterDt.email.includes(item.loggedUseremail)) {
             return false;
           }
-        } else {
+        } else if(filterDt.email) {
           if(filterDt.email != item.loggedUseremail) {
             return false;
           }
